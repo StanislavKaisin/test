@@ -1,8 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+import { useAPI } from "./hooks/useAPI";
+import { error } from "console";
 
 function App() {
+  const { users, error } = useAPI();
+  if (error) console.log(error);
+  console.log(users);
   return (
     <div className="App">
       <header className="App-header">
