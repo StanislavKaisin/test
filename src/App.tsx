@@ -3,29 +3,35 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import { useAPI } from "./hooks/useAPI";
-import { error } from "console";
+
+import { getMonthsFromUsers } from "./helpers/getMonthsFromUsers";
 
 function App() {
-  const { users, error } = useAPI();
-  if (error) console.log(error);
-  console.log(users);
+  const { error, loading, usersPerMonth } = useAPI();
+  if (error) {
+    // console.log(error);
+  }
+  // console.log(users);
+  // console.log("loading=", loading);
+  console.log("usersPerMonth=", usersPerMonth);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <div className="App">
+          {usersPerMonth.length &&
+            usersPerMonth.map((month) => {
+              return (
+                <p key={month.month} style={{ backgroundColor: month.color }}>
+                  {month.month}
+                </p>
+              );
+            })}
+        </div>
+      )}
+    </>
   );
 }
 
