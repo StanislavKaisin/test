@@ -23,7 +23,7 @@ function App() {
         <CircularUnderLoad />
       ) : (
         <div className="months">
-          <h2>LIST OF MONTHS:</h2>
+          <h2>LIST OF THE MONTHS:</h2>
           {usersPerMonth.length &&
             usersPerMonth.map((month) => {
               return (
