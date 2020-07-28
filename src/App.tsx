@@ -1,10 +1,10 @@
 import React from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
 
 import { useAPI } from "./hooks/useAPI";
-
-import { getMonthsFromUsers } from "./helpers/getMonthsFromUsers";
+import CircularUnderLoad from "./components/CircularUnderLoad";
+import TooltipItem from "./components/TooltipItem";
 
 function App() {
   const { error, loading, usersPerMonth } = useAPI();
@@ -13,25 +13,30 @@ function App() {
   }
   // console.log(users);
   // console.log("loading=", loading);
-  console.log("usersPerMonth=", usersPerMonth);
+  // console.log("usersPerMonth=", usersPerMonth);
 
   return (
-    <>
+    <div className="App">
       {loading ? (
-        <h1>Loading...</h1>
+        <CircularUnderLoad />
       ) : (
-        <div className="App">
+        <div className="months">
+          <h1>LIST OF MONTHS:</h1>
           {usersPerMonth.length &&
             usersPerMonth.map((month) => {
+              console.log("month=", month);
               return (
-                <p key={month.month} style={{ backgroundColor: month.color }}>
-                  {month.month}
-                </p>
+                <TooltipItem
+                  key={month.month}
+                  month={month.month}
+                  color={month.color}
+                  users={month.users}
+                />
               );
             })}
         </div>
       )}
-    </>
+    </div>
   );
 }
 
