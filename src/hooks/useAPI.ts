@@ -17,36 +17,20 @@ export function useAPI() {
     axios
       .get(API)
       .then((data) => {
-        // console.log("data=", data.data);
         setUsers(data.data);
-        // console.log("users=", users);
-        // console.log("loading=", loading);
         if (data.data?.length) {
           const monthsList = getMonthsFromUsers(data.data);
-          // console.log("monthsList=", monthsList);
           const users = getUsersPerMonth(monthsList, data.data);
           setUsersPerMonth(users);
           setMonths(monthsList);
         }
-
-        // setMonths(monthsList);
         setLoading(false);
         return { users };
       })
-      .then(({ users }) => {
-        // console.log("users=", users);
-      })
       .catch((error) => {
-        // console.log("error=", error);
         setError(error);
         setLoading(false);
       });
-    // console.log("users=", users);
-    return () => {
-      console.log("users=", users);
-    };
   }, []);
-  // console.log("users=", users);
-
   return { users, error, loading, months, usersPerMonth };
 }

@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  withStyles,
-  Theme,
-  makeStyles,
-  createStyles,
-} from "@material-ui/core/styles";
+import { withStyles, Theme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
@@ -28,8 +23,6 @@ export default function TooltipItem(props: {
 }) {
   const { month, color, users } = props;
   const usersList = users.map((user) => <p key={user.name}>{user.name}</p>);
-
-  // console.log("users=", users);
   return (
     <div>
       <HtmlTooltip

@@ -9,11 +9,13 @@ import TooltipItem from "./components/TooltipItem";
 function App() {
   const { error, loading, usersPerMonth } = useAPI();
   if (error) {
-    // console.log(error);
+    console.log(error);
+    return (
+      <div className="App">
+        <h2>Something went wrong...</h2>
+      </div>
+    );
   }
-  // console.log(users);
-  // console.log("loading=", loading);
-  // console.log("usersPerMonth=", usersPerMonth);
 
   return (
     <div className="App">
@@ -21,10 +23,9 @@ function App() {
         <CircularUnderLoad />
       ) : (
         <div className="months">
-          <h1>LIST OF MONTHS:</h1>
+          <h2>LIST OF MONTHS:</h2>
           {usersPerMonth.length &&
             usersPerMonth.map((month) => {
-              console.log("month=", month);
               return (
                 <TooltipItem
                   key={month.month}
